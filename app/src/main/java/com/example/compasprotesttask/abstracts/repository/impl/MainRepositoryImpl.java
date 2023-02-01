@@ -1,9 +1,22 @@
 package com.example.compasprotesttask.abstracts.repository.impl;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 
 import com.example.compasprotesttask.abstracts.repository.MainRepository;
 import com.example.compasprotesttask.abstracts.repository.models.Weather;
+import com.example.compasprotesttask.ui.MainActivity;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,11 +29,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import static android.content.Context.LOCATION_SERVICE;
+
 public class MainRepositoryImpl implements MainRepository {
     private final String API_KEY = "21d93414a9c73d83ab440d2f8b4d3c79"; //Ваш API ключ
 
+
+
     @Override
-    public String downloadWeather(String lat, String lon) throws MalformedURLException {
+    public String downloadWeather(double lat, double lon) throws MalformedURLException {
             String input;
             URL url = new URL("http://" + "api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY);
 
@@ -67,7 +84,7 @@ public class MainRepositoryImpl implements MainRepository {
         JSONObject wind = (JSONObject) jsonObject.get("wind");// Получение объекта wind
 
         weather.setWindSpeed(
-                Integer.parseInt(
+                Double.parseDouble(
                         wind.get("speed").toString()));// Получение и присваивание скорости ветра
         return weather;
     }
@@ -76,5 +93,6 @@ public class MainRepositoryImpl implements MainRepository {
     public float getCelsiusFromKelvin(float kelvin) {
         return (float) (kelvin - 273.15);
     }
+
 
 }

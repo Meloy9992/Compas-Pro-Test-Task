@@ -6,7 +6,7 @@ public class Weather {
     private float temperature;
     private int humidity;
     private int pressure;
-    private int windSpeed;
+    private double windSpeed;
 
     public String getWeather() {
         return weather;
@@ -38,10 +38,10 @@ public class Weather {
     public void setPressure(int pressure) {
         this.pressure = pressure;
     }
-    public int getWindSpeed() {
+    public double getWindSpeed() {
         return windSpeed;
     }
-    public void setWindSpeed(int windSpeed) {
+    public void setWindSpeed(double windSpeed) {
         this.windSpeed = windSpeed;
     }
 

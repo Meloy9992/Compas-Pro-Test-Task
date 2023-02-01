@@ -1,7 +1,5 @@
 package com.example.compasprotesttask.abstracts.presenter.impl;
 
-import android.location.Location;
-
 import com.example.compasprotesttask.abstracts.presenter.MainPresenter;
 import com.example.compasprotesttask.abstracts.repository.MainRepository;
 import com.example.compasprotesttask.abstracts.repository.impl.MainRepositoryImpl;
@@ -26,14 +24,10 @@ public class MainPresenterImpl implements MainPresenter {
 
 
     @Override
-    public void getWeather() throws MalformedURLException, ParseException {
-        jsonWeather = mainRepository.downloadWeather("48.7194", "44.5018");
+    public void getWeather(double lat, double lon) throws MalformedURLException, ParseException {
+        jsonWeather = mainRepository.downloadWeather(lat, lon);
         weather = mainRepository.getWeather(jsonWeather);
         mainActivity.showWeather(weather);
-    }
-
-    @Override
-    public void onButtonWasClicked() {
     }
 
     @Override
