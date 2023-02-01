@@ -1,5 +1,7 @@
 package com.example.compasprotesttask.abstracts.repository.impl;
 
+import android.os.AsyncTask;
+
 import com.example.compasprotesttask.abstracts.repository.MainRepository;
 import com.example.compasprotesttask.abstracts.repository.models.Weather;
 import org.json.simple.JSONArray;
@@ -8,7 +10,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -75,4 +76,5 @@ public class MainRepositoryImpl implements MainRepository {
     public float getCelsiusFromKelvin(float kelvin) {
         return (float) (kelvin - 273.15);
     }
+
 }
