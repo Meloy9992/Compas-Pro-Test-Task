@@ -1,0 +1,78 @@
+package com.example.compasprotesttask.abstracts.repository.impl;
+
+import com.example.compasprotesttask.abstracts.repository.MainRepository;
+import com.example.compasprotesttask.abstracts.repository.models.Weather;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
+public class MainRepositoryImpl implements MainRepository {
+    private final String API_KEY = "21d93414a9c73d83ab440d2f8b4d3c79"; //Ваш API ключ
+
+    @Override
+    public String downloadWeather(String lat, String lon) throws MalformedURLException {
+            String input;
+            URL url = new URL("http://" + "api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY);
+
+            try{
+                URLConnection connection = url.openConnection();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                input = reader.readLine();
+                System.out.println("Ответ по запросу: " + input); //Ответ от openweathermap.org
+                reader.close();
+                return input;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return e.toString();
+            }
+    }
+
+    @Override
+    public Weather getWeather(String json) throws ParseException {
+        Weather weather = new Weather();
+        JSONObject jsonObject = (JSONObject) new JSONParser().parse(json);
+
+        JSONArray arrayWeather = (JSONArray) jsonObject.get("weather"); //Получение массива weather из полученного Json
+        JSONObject objectWeather = (JSONObject) arrayWeather.iterator().next();//Получение объекта weather
+
+        weather.setWeatherDescription(
+                objectWeather.
+                        get("description").toString());//Получение и присваивание описания погоды
+        weather.setWeather(objectWeather.
+                get("main").toString());//Получение и присваивание погоды
+
+        JSONObject main = (JSONObject) jsonObject.get("main"); //Получение объекта main
+
+        weather.setTemperature(
+                getCelsiusFromKelvin(
+                        Float.parseFloat(
+                                main.get("temp").toString())));// Получение из объекта main поле temp
+        weather.setPressure(
+                Integer.parseInt(
+                        main.get("pressure").toString()));// Получение и присваивание давления
+        weather.setHumidity(
+                Integer.parseInt(
+                        main.get("humidity").toString()));// Получение и присваивание влажности
+
+        JSONObject wind = (JSONObject) jsonObject.get("wind");// Получение объекта wind
+
+        weather.setWindSpeed(
+                Integer.parseInt(
+                        wind.get("speed").toString()));// Получение и присваивание скорости ветра
+        return weather;
+    }
+
+    @Override
+    public float getCelsiusFromKelvin(float kelvin) {
+        return (float) (kelvin - 273.15);
+    }
+}
