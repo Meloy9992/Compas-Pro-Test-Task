@@ -1,6 +1,7 @@
 package com.example.compasprotesttask.abstracts.repository.impl;
 
 import com.example.compasprotesttask.abstracts.repository.SettingsRepository;
+import com.example.compasprotesttask.abstracts.repository.models.Api;
 import com.example.compasprotesttask.abstracts.repository.models.City;
 
 import org.json.simple.JSONArray;
@@ -16,13 +17,12 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class SettingsRepositoryImpl implements SettingsRepository {
-    private final String API_KEY = "21d93414a9c73d83ab440d2f8b4d3c79"; //Ваш API ключ
     private final int limit = 1;
 
     @Override
     public String downloadCity(String nameCity) throws MalformedURLException {
         String input;
-        URL url = new URL("http://" + "api.openweathermap.org/geo/1.0/direct?q=" + nameCity + "&limit=" + limit + "&appid=" + API_KEY);
+        URL url = new URL("http://" + "api.openweathermap.org/geo/1.0/direct?q=" + nameCity + "&limit=" + limit + "&appid=" + new Api().getAPI_KEY());
 
         try{
             URLConnection connection = url.openConnection();

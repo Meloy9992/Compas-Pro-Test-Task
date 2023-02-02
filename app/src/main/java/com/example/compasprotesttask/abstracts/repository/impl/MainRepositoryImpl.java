@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
 import com.example.compasprotesttask.abstracts.repository.MainRepository;
+import com.example.compasprotesttask.abstracts.repository.models.Api;
 import com.example.compasprotesttask.abstracts.repository.models.Weather;
 import com.example.compasprotesttask.ui.MainActivity;
 
@@ -32,14 +33,13 @@ import java.net.URLConnection;
 import static android.content.Context.LOCATION_SERVICE;
 
 public class MainRepositoryImpl implements MainRepository {
-    private final String API_KEY = "21d93414a9c73d83ab440d2f8b4d3c79"; //Ваш API ключ
 
 
 
     @Override
     public String downloadWeather(double lat, double lon) throws MalformedURLException {
             String input;
-            URL url = new URL("http://" + "api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + API_KEY);
+            URL url = new URL("http://" + "api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + new Api().getAPI_KEY());
 
             try{
                 URLConnection connection = url.openConnection();
