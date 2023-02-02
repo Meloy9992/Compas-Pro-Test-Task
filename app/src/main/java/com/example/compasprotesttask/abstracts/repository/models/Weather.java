@@ -7,6 +7,15 @@ public class Weather {
     private int humidity;
     private int pressure;
     private double windSpeed;
+    private String icon;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
     public String getWeather() {
         return weather;
@@ -45,15 +54,17 @@ public class Weather {
         this.windSpeed = windSpeed;
     }
 
-    public Weather() {
-    }
-
-    public Weather(String weather, String weatherDescription, float temperature, int humidity, int pressure, int windSpeed) {
+    public Weather(String weather, String weatherDescription, float temperature, int humidity, int pressure, double windSpeed, String icon) {
         this.weather = weather;
         this.weatherDescription = weatherDescription;
         this.temperature = temperature;
         this.humidity = humidity;
         this.pressure = pressure;
         this.windSpeed = windSpeed;
+        this.icon = icon;
     }
+
+    public Weather() {
+    }
+
 }

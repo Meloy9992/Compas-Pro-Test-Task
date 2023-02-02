@@ -6,64 +6,122 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-    <TextView
-        android:id="@+id/tvWeather"
-        android:layout_width="77dp"
-        android:layout_height="33dp"
-        android:layout_marginBottom="16dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/tvTemperature"
-        app:layout_constraintEnd_toStartOf="@+id/btnSettings"
-        app:layout_constraintHorizontal_bias="0.088"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.884" />
+    <RelativeLayout
+        android:layout_width="395dp"
+        android:layout_height="671dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="44dp">
 
-    <TextView
-        android:id="@+id/tvTemperature"
-        android:layout_width="75dp"
-        android:layout_height="20dp"
-        android:layout_marginBottom="12dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/tvHumidity"
-        tools:layout_editor_absoluteX="17dp" />
+        <TextView
+            android:id="@+id/tvWeather2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Погода" />
 
-    <TextView
-        android:id="@+id/tvHumidity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="512dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvPressure"
-        app:layout_constraintHorizontal_bias="0.615"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tvWeather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="TextView" />
 
-    <TextView
-        android:id="@+id/tvPressure"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toStartOf="@+id/tvWindSpeed"
-        tools:layout_editor_absoluteY="108dp" />
+        <TextView
+            android:id="@+id/tvTemperature2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvWeather"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Температура" />
 
-    <TextView
-        android:id="@+id/tvWindSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="176dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="108dp" />
+        <TextView
+            android:id="@+id/tvTemperature"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTemperature2"
+            android:layout_marginTop="10dp"
+            android:text="TextView" />
 
-    <Button
-        android:id="@+id/btnSettings"
-        android:layout_width="123dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="32dp"
-        android:text="Settings"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="105dp" />
+        <TextView
+            android:id="@+id/tvHumidity2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTemperature"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Влажность" />
+
+        <TextView
+            android:id="@+id/tvHumidity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvHumidity2"
+            android:layout_marginTop="10dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/tvPressure2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvHumidity"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Давление" />
+
+        <TextView
+            android:id="@+id/tvPressure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPressure2"
+            android:layout_marginTop="10dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/tvWindSpeed2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPressure"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Скорость ветра" />
+
+        <TextView
+            android:id="@+id/tvWindSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvWindSpeed2"
+            android:layout_marginTop="10dp"
+            android:text="TextView" />
+
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="251dp"
+            android:layout_height="219dp"
+            android:layout_below="@+id/tvWindSpeed"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="55dp"
+            android:layout_marginEnd="83dp"
+            android:src="@drawable/sunny" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="113dp"
+            android:layout_height="44dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="272dp"
+            android:layout_marginTop="599dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="27dp"
+            android:fontFamily="sans-serif-black"
+            android:text="Settings" />
+
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

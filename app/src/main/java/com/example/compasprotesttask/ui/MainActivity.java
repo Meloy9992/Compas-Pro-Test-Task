@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +26,7 @@ import org.json.simple.parser.ParseException;
 
 import java.net.MalformedURLException;
 
+
 public class MainActivity extends AppCompatActivity implements MainView {
 
     final int REQUEST_CODE_CITY = 1;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     private TextView tvHumidity;
     private TextView tvPressure;
     private TextView tvWindSpeed;
+
+    private ImageView imgView;
 
     private Button btnSettings;
 
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         tvHumidity.setText(String.valueOf(weather.getHumidity()));
         tvPressure.setText(String.valueOf(weather.getPressure()));
         tvWindSpeed.setText(String.valueOf(weather.getWindSpeed()));
+        getImage(weather);
     }
 
     public void init() throws MalformedURLException, ParseException {
@@ -72,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         tvHumidity = findViewById(R.id.tvHumidity);
         tvPressure = findViewById(R.id.tvPressure);
         tvWindSpeed = findViewById(R.id.tvWindSpeed);
+        imgView = findViewById(R.id.imgView);
         btnSettings = findViewById(R.id.btnSettings);
 
         if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -84,43 +90,15 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         mainPresenter.getWeather(lat, lon);
 
-
         btnSettings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                double [] coordinates = {lat, lon};
                 Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivityForResult(myIntent, REQUEST_CODE_CITY);
                 MainActivity.this.startActivity(myIntent);
             }
         });
 
-
-/*        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationManager.requestLocationUpdates(GPS_PROVIDER,
-                1000 * 10, 10, locationListener);
-        locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER, 1000 * 10, 10,
-                locationListener);
-        try {
-            mainPresenter.getWeather();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
     }
 
     @Override
@@ -139,62 +117,44 @@ public class MainActivity extends AppCompatActivity implements MainView {
                     }
                     break;
             }
-            // если вернулось не ОК
         } else {
             Toast.makeText(this, "Wrong result", Toast.LENGTH_SHORT).show();
         }
     }
 
-/*    @Override
-    public void onResume(){
-        super.onResume();
-        Intent intent = getIntent();
-        city = intent.getParcelableExtra("city");
-        System.out.println(city.getCountry());
-
-    }*/
- /*   @Override
-    protected void onResume() {
-        super.onResume();
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        locationManager.requestLocationUpdates(GPS_PROVIDER,
-                1000 * 10, 10, locationListener);
-        locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER, 1000 * 10, 10,
-                locationListener);
-    }
-
     @Override
-    protected void onPause() {
-        super.onPause();
-        locationManager.removeUpdates(locationListener);
+    public void getImage(Weather weather){
+        switch (weather.getWeatherDescription()){
+            case "clear sky":
+                imgView.setImageResource(R.drawable.sunny);
+                break;
+            case "few clouds":
+                imgView.setImageResource(R.drawable.partly_cloudy);
+                break;
+            case "scattered clouds":
+                imgView.setImageResource(R.drawable.cloudy);
+                break;
+            case "broken clouds":
+                imgView.setImageResource(R.drawable.mainly_cloudy);
+                break;
+            case "shower rain":
+                imgView.setImageResource(R.drawable.heavy_rain);
+                break;
+            case "rain":
+                imgView.setImageResource(R.drawable.drizzle);
+                break;
+            case "thunderstorm":
+                imgView.setImageResource(R.drawable.storm);
+                break;
+            case "snow":
+                imgView.setImageResource(R.drawable.snow);
+                break;
+            case "mist":
+                imgView.setImageResource(R.drawable.fog);
+                break;
+        }
     }
 
-    LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(@NonNull Location location) {
-            try {
-                if (location.getProvider().equals(GPS_PROVIDER)) {
-                    mainPresenter.getWeather(location.getLatitude(), location.getLongitude());
-                } else if (location.getProvider().equals(
-                        LocationManager.NETWORK_PROVIDER)) {
-                    mainPresenter.getWeather(location.getLatitude(), location.getLongitude());
-                }
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
-    };*/
+
 
 }
