@@ -7,3 +7,13 @@ Compas Pro Test Task
 На главном экране должна быть информация о текущей погоде, включая температуру, влажность, давление и скорость ветра. 
 Также должна быть иконка, отображающая текущую погоду (например, солнечно, дождливо и т.д.).
 Приложение должно использовать архитектурный паттерн MVP (Model-View-Presenter) для организации кода.
+
+Настройка сервиса
+Для того, чтобы воспользоваться сервисом необходимо вставить ваш Api ключ из сайта https://openweathermap.org
+Ключ необзодимо вставить в com.example.compasprotesttask.abstracts.repository.models.Api в поле API_KEY.
+
+com.example.compasprotesttask.abstracts.repository.impl.url - url сервиса для получения текущей погоды по координатам. lat - широта, lon - долгота.
+com.example.compasprotesttask.abstracts.repository.impl.url - url сервиса для получения координат по названию города. nameCity - название города, limit - количество местоположений в ответе API(Макс 5. По умолчанию 1);
+com.example.compasprotesttask.ui.lat - Широта, по умолчанию стоит Волгоград
+com.example.compasprotesttask.ui.lon - Долгота, по умолчанию стоит Волгоград
+com.example.compasprotesttask.ui.REQUEST_CODE_CITY - код запроса города
