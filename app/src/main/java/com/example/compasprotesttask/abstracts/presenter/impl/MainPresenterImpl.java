@@ -18,8 +18,8 @@ public class MainPresenterImpl implements MainPresenter {
     private Weather weather;
 
     public MainPresenterImpl(MainActivity mainActivity) {
-    this.mainActivity = mainActivity;
-    this.mainRepository = new MainRepositoryImpl();
+        this.mainActivity = mainActivity;
+        this.mainRepository = new MainRepositoryImpl();
     }
 
 
@@ -28,9 +28,5 @@ public class MainPresenterImpl implements MainPresenter {
         jsonWeather = mainRepository.downloadWeather(lat, lon);
         weather = mainRepository.getWeather(jsonWeather);
         mainActivity.showWeather(weather);
-    }
-
-    @Override
-    public void onDestroy() {
     }
 }

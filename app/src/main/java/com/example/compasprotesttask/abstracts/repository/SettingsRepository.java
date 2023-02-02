@@ -8,5 +8,6 @@ import java.net.MalformedURLException;
 
 public interface SettingsRepository {
     City loadCity(String json) throws ParseException;
+
     String downloadCity(String nameCity) throws MalformedURLException;
 }

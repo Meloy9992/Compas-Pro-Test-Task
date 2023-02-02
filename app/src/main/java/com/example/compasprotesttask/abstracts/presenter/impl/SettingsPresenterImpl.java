@@ -31,8 +31,4 @@ public class SettingsPresenterImpl implements SettingsPresenter {
         return city;
     }
 
-    @Override
-    public void onDestroy() {
-
-    }
 }

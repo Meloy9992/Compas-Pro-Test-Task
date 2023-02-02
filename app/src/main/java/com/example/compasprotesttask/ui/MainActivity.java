@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
 
         mainPresenter.getWeather(lat, lon);
 
-        btnSettings.setOnClickListener(new View.OnClickListener(){
+        btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements MainView {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CODE_CITY:
-                   City city = (City) data.getSerializableExtra("city");
+                    City city = (City) data.getSerializableExtra("city");
                     try {
                         mainPresenter.getWeather(city.getLat(), city.getLon());
                     } catch (MalformedURLException e) {
@@ -123,8 +123,8 @@ public class MainActivity extends AppCompatActivity implements MainView {
     }
 
     @Override
-    public void getImage(Weather weather){
-        switch (weather.getWeatherDescription()){
+    public void getImage(Weather weather) {
+        switch (weather.getWeatherDescription()) {
             case "clear sky":
                 imgView.setImageResource(R.drawable.sunny);
                 break;
@@ -154,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements MainView {
                 break;
         }
     }
-
 
 
 }

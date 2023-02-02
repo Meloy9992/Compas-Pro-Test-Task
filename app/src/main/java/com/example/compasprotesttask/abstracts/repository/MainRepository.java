@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface MainRepository {
     String downloadWeather(double lat, double lon) throws MalformedURLException;
+
     Weather getWeather(String json) throws ParseException;
+
     float getCelsiusFromKelvin(float kelvin);
 }

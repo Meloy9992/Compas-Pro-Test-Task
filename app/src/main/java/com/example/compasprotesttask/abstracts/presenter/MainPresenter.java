@@ -6,5 +6,4 @@ import java.net.MalformedURLException;
 
 public interface MainPresenter {
     void getWeather(double lat, double lon) throws MalformedURLException, ParseException;
-    void onDestroy();
 }

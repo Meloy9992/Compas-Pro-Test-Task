@@ -4,5 +4,6 @@ import com.example.compasprotesttask.abstracts.repository.models.Weather;
 
 public interface MainView {
     void showWeather(Weather weather);
+
     void getImage(Weather weather);
 }

@@ -8,5 +8,4 @@ import java.net.MalformedURLException;
 
 public interface SettingsPresenter {
     City getCity(String nameCity) throws MalformedURLException, ParseException;
-    void onDestroy();
 }

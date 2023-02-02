@@ -20,36 +20,47 @@ public class Weather {
     public String getWeather() {
         return weather;
     }
+
     public void setWeather(String weather) {
         this.weather = weather;
     }
+
     public String getWeatherDescription() {
         return weatherDescription;
     }
+
     public void setWeatherDescription(String weatherDescription) {
         this.weatherDescription = weatherDescription;
     }
+
     public float getTemperature() {
         return temperature;
     }
+
     public void setTemperature(float temperature) {
         this.temperature = temperature;
     }
+
     public int getHumidity() {
         return humidity;
     }
+
     public void setHumidity(int humidity) {
         this.humidity = humidity;
     }
+
     public int getPressure() {
         return pressure;
     }
+
     public void setPressure(int pressure) {
         this.pressure = pressure;
     }
+
     public double getWindSpeed() {
         return windSpeed;
     }
+
     public void setWindSpeed(double windSpeed) {
         this.windSpeed = windSpeed;
     }

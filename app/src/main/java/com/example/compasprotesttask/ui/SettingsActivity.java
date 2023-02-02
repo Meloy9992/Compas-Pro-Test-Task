@@ -34,12 +34,11 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        System.out.println("Активити создалась");
 
         init();
     }
 
-    public void init(){
+    public void init() {
         cities = (Spinner) findViewById(R.id.spinner);
 
         settingsPresenter = new SettingsPresenterImpl(this);
@@ -62,13 +61,13 @@ public class SettingsActivity extends AppCompatActivity implements SettingsView,
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         try {
-            if (i == 0){
+            if (i == 0) {
                 return;
-            }else {
+            } else {
                 City city = new City();
                 city = settingsPresenter.getCity(data.get(i));
                 Intent myIntent = new Intent(SettingsActivity.this, MainActivity.class);
-                myIntent.putExtra("city",(Serializable) city); //Optional parameters
+                myIntent.putExtra("city", (Serializable) city);
                 setResult(RESULT_OK, myIntent);
                 this.finish();
 

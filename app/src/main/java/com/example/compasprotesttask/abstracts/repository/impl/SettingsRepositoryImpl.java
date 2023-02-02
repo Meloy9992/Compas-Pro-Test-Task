@@ -1,5 +1,7 @@
 package com.example.compasprotesttask.abstracts.repository.impl;
 
+import android.util.Log;
+
 import com.example.compasprotesttask.abstracts.repository.SettingsRepository;
 import com.example.compasprotesttask.abstracts.repository.models.Api;
 import com.example.compasprotesttask.abstracts.repository.models.City;
@@ -24,11 +26,11 @@ public class SettingsRepositoryImpl implements SettingsRepository {
         String input;
         URL url = new URL("http://" + "api.openweathermap.org/geo/1.0/direct?q=" + nameCity + "&limit=" + limit + "&appid=" + new Api().getAPI_KEY());
 
-        try{
+        try {
             URLConnection connection = url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             input = reader.readLine();
-            System.out.println("Ответ по запросу: " + input); //Ответ от openweathermap.org
+            Log.d("[INFO]", "Ответ по запросу: " + input); //Ответ от openweathermap.org
             reader.close();
             return input;
         } catch (IOException e) {
@@ -41,9 +43,9 @@ public class SettingsRepositoryImpl implements SettingsRepository {
     public City loadCity(String json) throws ParseException {
         City city = new City();
 
-        JSONArray jsonArray = (JSONArray) new JSONParser().parse(json);
+        JSONArray jsonArray = (JSONArray) new JSONParser().parse(json); //Получение массива
 
-        JSONObject name = (JSONObject) jsonArray.iterator().next();//Получение объекта weather
+        JSONObject name = (JSONObject) jsonArray.iterator().next();//Получение объекта name
         city.setLat(
                 Double.valueOf(
                         name.get("lat").toString()));// Получение Широты

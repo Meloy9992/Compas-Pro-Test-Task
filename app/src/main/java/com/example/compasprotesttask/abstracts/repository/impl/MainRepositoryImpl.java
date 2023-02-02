@@ -8,6 +8,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -35,23 +36,24 @@ import static android.content.Context.LOCATION_SERVICE;
 public class MainRepositoryImpl implements MainRepository {
 
 
-
     @Override
     public String downloadWeather(double lat, double lon) throws MalformedURLException {
-            String input;
-            URL url = new URL("http://" + "api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + new Api().getAPI_KEY());
+        String input;
+        URL url = new URL("http://" + "api.openweathermap.org/data/2.5/weather?lat="
+                + lat + "&lon=" +
+                lon + "&appid=" + new Api().getAPI_KEY());
 
-            try{
-                URLConnection connection = url.openConnection();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                input = reader.readLine();
-                System.out.println("Ответ по запросу: " + input); //Ответ от openweathermap.org
-                reader.close();
-                return input;
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            }
+        try {
+            URLConnection connection = url.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            input = reader.readLine();
+            Log.d("[INFO]", "Ответ по запросу: " + input); //Ответ от openweathermap.org
+            reader.close();
+            return input;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return e.toString();
+        }
     }
 
     @Override
