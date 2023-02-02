@@ -17,4 +17,3 @@ Compas Pro Test Task
 * com.example.compasprotesttask.abstracts.repository.impl.url - url сервиса для получения координат по названию города. nameCity - название города, limit - количество местоположений в ответе API(Макс 5. По умолчанию 1);
 * com.example.compasprotesttask.ui.lat - Широта, по умолчанию стоит Волгоград
 * com.example.compasprotesttask.ui.lon - Долгота, по умолчанию стоит Волгоград
-* com.example.compasprotesttask.ui.REQUEST_CODE_CITY - код запроса города
